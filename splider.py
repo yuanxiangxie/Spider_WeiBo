@@ -4,13 +4,13 @@
 import urllib2
 from bs4 import BeautifulSoup
 import cookielib
-import MySQLdb
-import sys
-import csv
-import codecs
+#import MySQLdb
+#import sys
+#import csv
+#import codecs
 
-reload(sys)
-sys.setdefaultencoding('utf-8')
+#reload(sys)
+#sys.setdefaultencoding('utf-8')
 
 class Spider:
 
@@ -33,25 +33,21 @@ class Spider:
         for movie in soup.find_all('div', class_='item'):
             info = []
             movie_name = movie.find_all('span', class_='title')[0].get_text()
-            #print movie_name
+            print movie_name
             info.append(movie_name)
             movie_introduce = movie.find_all('a')[0].get('href')
-            #print movie_introduce
+            print movie_introduce
             info.append(movie_introduce)
             movie_img = movie.find_all('img')[0].get('src')
-            #print movie_img
+            print movie_img
             info.append(movie_img)
             movie_star_list = movie.find_all('div', class_='star')[0]
             movie_star = movie_star_list.find_all('span', class_='rating_num')[0].get_text()
-            #print movie_star
+            print movie_star
             info.append(movie_star)
             movie_comment = movie_star_list.find_all('span', attrs={'property': 'v:best'})[0].find_next_sibling().get_text()
-            #print movie_comment
+            print movie_comment
             info.append(movie_comment)
-            #self.cur.execute('insert into Movie values("Name", "Introduce", "Img", "9", "384")')
-            #self.cur.execute('insert into Movie values(%s, %s, %s, %s, %s)', info)
-            print '\n'.join(info)
-            #writer.writerow(info)
 
     def printContent(self):
         try:
